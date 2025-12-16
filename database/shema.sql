@@ -8,6 +8,8 @@ CREATE TABLE livraison(
     date_livraison date,
     id_destination int,
     id_vehicule int,
+    id_livreur int,
+    carburant float
 );
 
 CREATE TABLE zone_livraison(
@@ -15,6 +17,9 @@ CREATE TABLE zone_livraison(
     zone_livraison VARCHAR(50)
 );
 
+CREATE TABLE revientparkg(
+    prixkg float
+);
 
 CREATE TABLE  colis(
     id int primary key AUTO_INCREMENT,
@@ -37,4 +42,5 @@ CREATE TABLE vehicule(
 CREATE TABLE livreur(
     id int primary key AUTO_INCREMENT,
     nom varchar(70),
+    salaire float
 );
