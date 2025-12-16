@@ -4,21 +4,23 @@ use livraison;
 CREATE TABLE livraison(
     id int primary key AUTO_INCREMENT,
     id_entrepot int ,
-    statut varchar(50)
+    status varchar(50)
     date_livraison date,
     id_destination int,
     id_vehicule int,
 );
 
-CREATE TABLE destination(
+CREATE TABLE zone_livraison(
     id int primary key AUTO_INCREMENT,
-    adresse VARCHAR(50)
+    zone_livraison VARCHAR(50)
 );
 
 
 CREATE TABLE  colis(
     id int primary key AUTO_INCREMENT,
     id_livraison int,
+    description text,
+    poids float
 );
 
 CREATE TABLE entrepot(
