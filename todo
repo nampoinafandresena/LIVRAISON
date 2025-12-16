@@ -29,7 +29,8 @@ Créer les tables et données nécessaires qui permettent de gérer les fonction
             1. voiture ( à saisir par livraison)
             2. chauffeur (salaire journalier), chaque chauffeur peut avoir son salaire
 
-        ii. colis par kg
+        ii. colis par kg  ( montant gagné par kg )
+
 2. Créer directement les autres données nécessaires dans la table
 3. Page pour afficher les bénéfices par période (jour, mois, année)
 
