@@ -44,10 +44,10 @@ app
         StatistiqueModel.php # pour les requetes complexes avec les operations a faire (GROUP BY DATE, BENEFICES, ...)
     - views
         formulaire.php: 
-        formulaire de colis
+(ok)        formulaire de colis
             input:  - colis (description colis)
                     - poids 
-            submit: -> insert dans la base de donnee 
+(ok)            submit: -> insert dans la base de donnee 
                     colis(id_colis, description, poids, prix)
                         dans colis: description = colis 
                                     poids = poids

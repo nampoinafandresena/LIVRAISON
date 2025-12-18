@@ -15,6 +15,13 @@ class ColisController{
       $allcolis = $this->colis->getAll();
       Flight::render('listecolis',['colis' => $allcolis]);
    }
+   public function insertColis(){
+    $desc = Flight::request()->data->description;
+    $poids = Flight::request()->data->poids;
+    $this->colis->insertColis($desc,$poids);
+    Flight::redirect('/colis/liste');
+   }
+
 }
 
 ?>

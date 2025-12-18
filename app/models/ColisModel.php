@@ -16,6 +16,10 @@ class ColisModel{
              $stmt = $this->db->query("SELECT * FROM colis");
              return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+    
+        public function insertColis($description,$poids){
+            $stmt = $this->db->prepare("INSERT INTO colis(description,poids) VALUES ( :descri , :poids)");
+            $stmt->execute([':descri'=>$description,':poids'=>$poids]);
+   }
 
 }
