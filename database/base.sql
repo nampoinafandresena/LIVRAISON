@@ -47,6 +47,12 @@ CREATE TABLE livraison (
     FOREIGN KEY (id_vehicule) REFERENCES vehicule(id_vehicule)
 );
 
+CREATE TABLE conf (
+    id_conf INT AUTO_INCREMENT PRIMARY KEY,
+    prix_kilo DECIMAL(10,2) NOT NULL
+);
+INSERT INTO conf (prix_kilo) VALUES (2000);
+
 /* INSERTIONS DE DONNEES */
 
 /* Status */
@@ -88,3 +94,53 @@ INSERT INTO livraison VALUES
 (NULL, 5, 1, 'Ivandry, Antananarivo', 2, 2, 1, 9000, '2025-03-03'),
 (NULL, 1, 1, 'Ambohimanarina, Antananarivo', 1, 3, 3, 3000, '2025-03-15'),
 (NULL, 2, 1, 'Ankorondrano, Antananarivo', 3, 1, 2, 2000, '2025-04-01');
+
+/* Creation de vue */
+CREATE OR REPLACE VIEW v_livraison_details AS
+SELECT
+    l.id_livraison,
+
+    c.description       AS colis_description,
+    c.poids             AS colis_poids,
+
+    e.adresse           AS entrepot_adresse,
+
+    l.destination,
+
+    s.libelle           AS status,
+
+    liv.nom             AS livreur_nom,
+    liv.salaire         AS livreur_salaire,
+
+    v.immatriculation   AS vehicule_immatriculation,
+
+    l.carburant,
+    l.date_livraison
+
+FROM livraison l
+JOIN colis c       ON l.id_colis = c.id_colis
+JOIN entrepot e    ON l.id_entrepot = e.id_entrepot
+JOIN status s      ON l.id_status = s.id_status
+JOIN livreur liv   ON l.id_livreur = liv.id_livreur
+JOIN vehicule v    ON l.id_vehicule = v.id_vehicule;
+
+SELECT * FROM v_livraison_details;
+
+CREATE OR REPLACE VIEW v_livraison_revenu AS
+SELECT 
+    l.id_livraison,
+    c.description AS colis_description,
+    c.poids AS colis_poids,
+    l.carburant,
+    lr.nom AS livreur_nom,
+    lr.salaire AS salaire_livreur,
+    l.destination,
+    (c.poids * cf.prix_kilo) AS revenu_colis,
+    (l.carburant + lr.salaire) AS cout_livraison,
+    ((c.poids * cf.prix_kilo) - (l.carburant + lr.salaire)) AS profit
+FROM livraison l
+JOIN colis c ON l.id_colis = c.id_colis
+JOIN livreur lr ON l.id_livreur = lr.id_livreur
+JOIN conf cf ON 1=1;  
+
+SELECT * FROM v_livraison_revenu;

@@ -43,55 +43,99 @@ app
         LivraisonModel.php
         StatistiqueModel.php # pour les requetes complexes avec les operations a faire (GROUP BY DATE, BENEFICES, ...)
     - views
-        formulaire.php: 
-(ok)        formulaire de colis
-            input:  - colis (description colis)
+(ok)    index.php: page d accueil
+            (ok) - routages
+            (ok) - mettre les liens vers les autres pages
+            (ok) - css
+            (ok) - routages a verifier
+            (ok) - verifier les liens dans le menu
+
+
+(ok)    formcolis.php: 
+        (ok) - formulaire de colis
+            (ok) input:  - colis (description colis)
                     - poids 
-(ok)            submit: -> insert dans la base de donnee 
-                    colis(id_colis, description, poids, prix)
-                        dans colis: description = colis 
-                                    poids = poids
-                                    prix = null (a update quand on ajoute une livraison) 
-        formulaire de livraison
-            input:  - id_colis + "( description colis (tonga de affichage fotsiny par rapport am le id) )"
-                    - poids 
-                    - prix
-                    - entrepot (select meme si il n y a qu un seul entrepot)
-                    - destination (adresse)
-                    - status = select options 
-                        en attente (par defaut) `
-                    - livreur = select options
-                    - vehicule = select options
-                    - date_livraison = input date
-            submit: -> insert dans la base de donnee 
-                    colis(id_colis, description, poids, prix)
-                        dans colis: prix = set le prix
-                    livraison(id_livraison, id_colis, id_entrepot, destination, id_status, id_livreur, id_vehicule, carburant, date_livraison)
-                        dans livraison: 
-                            id_colis = getIdColis where descri=colis 
-                            entrepot = getIdEntrepot ...
-                            destination = destination
-                            id_status = status 
-                            id_livreur = livreur
-                            id_vehicule = vehicule
-                            carburant = carburant
-                            date_livraison = date_livraison
-                    -> + pop up "Livraison enregistree!" 
+            (ok) submit: -> insert dans la base de donnee 
+        (ok) - css
+        (ok) - routages a verifier
+        (ok) - verifier les liens dans le menu
+
+
+(ok)    listecolis.php:
+        (ok) affichage de la liste des colis
+            (ok) - afficher tous les colis avec leurs details 
+                (OK) - description
+                (OK) - poids
+            (ok) - css
+        (OK) - routages a verifier
+        (ok) - verifier les liens dans le menu
+
+        listeLivraisonCombined.php:
+            (OK) - css
+            (OK)- affichage de la liste des livraisons:
+                -> avec les details des colis et des livraisons
+                -> avec le revenu par livraison
+            (OK) - creer une view view_livraison_details
+            (OK) - creer une view view_livraison_revenu
+            (OK) - LivraisonController.php: 
+                    -> allLivraisonCombined()
+            (OK) - routages a verifier
+            (ok) - verifier les liens dans le menu
+
+                
+
+
+    # TSY MBOLA NANGATHANA ALOHA
+        # formulaire de livraison
+        #     input:  - id_colis + "( description colis (tonga de affichage fotsiny par rapport am le id) )"
+        #             - poids 
+        #             - prix
+        #             - entrepot (select meme si il n y a qu un seul entrepot)
+        #             - destination (adresse)
+        #             - status = select options 
+        #                 en attente (par defaut) `
+        #             - livreur = select options
+        #             - vehicule = select options
+        #             - date_livraison = input date
+        #     submit: -> insert dans la base de donnee 
+        #             colis(id_colis, description, poids, prix)
+        #                 dans colis: prix = set le prix
+        #             livraison(id_livraison, id_colis, id_entrepot, destination, id_status, id_livreur, id_vehicule, carburant, date_livraison)
+        #                 dans livraison: 
+        #                     id_colis = getIdColis where descri=colis 
+        #                     entrepot = getIdEntrepot ...
+        #                     destination = destination
+        #                     id_status = status 
+        #                     id_livreur = livreur
+        #                     id_vehicule = vehicule
+        #                     carburant = carburant
+        #                     date_livraison = date_livraison
+        #             -> + pop up "Livraison enregistree!" 
 
 Travail à faire
 1. Gestion des livraisons (Création , Statut)
     a. les colis correspondants
-    b. Paramètre par livraison
-        i. cout de revient ( voiture + chauffeur (salaire journalier différent))
-            1. voiture ( à saisir par livraison)
-                -> carburant, mecanicien...
-            2. chauffeur (salaire journalier), chaque chauffeur peut avoir son salaire
+(OK)    - affichage de la liste des colis
+(OK)    - ajout de nouveaux colis
+            -> insertion dans la table colis
+
+(OK) b. Paramètre par livraison
+    (OK) i. cout de revient ( voiture + chauffeur (salaire journalier différent))
+        (OK) 1. voiture ( à saisir par livraison)
+                -> carburant
+        (OK) 2. chauffeur (salaire par livraison), chaque chauffeur a son propre salaire
                 -> dans la table livreur
-        ii. colis par kg  ( montant gagné par kg)
+            => cout_livraison = livraison.carburant + livreur.salaire
+
+        (OK) ii. colis par kg  ( montant gagné par kg)
             -> prix d un kilo deja configure
                 prix kilo * poids du colis = prix du colis
-2. Créer directement les autres données nécessaires dans la table
-    -> formulaire de livraison: views/formulaire.php
+            => revenu_colis = colis.poids * prix_kilo
+
+            DONC: profit = revenu_colis - cout_livraison
+
+(OK) 2. Créer directement les autres données nécessaires dans la table
+
 3. Page pour afficher les bénéfices par période (jour, mois, année)
     -> StatistiqueController.php
         fonctions:

@@ -2,10 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>Liste des livraisons</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des colis</title>
 
     <style>
+
         header {
     background-color: #2c3e50;
     padding: 0 20px;
@@ -67,17 +68,18 @@
         }
 
         table {
-            width: 70%;
-            margin: auto;
             border-collapse: collapse;
+            width: 95%;
+            margin: auto;
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         th, td {
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             text-align: center;
+            font-size: 0.95em;
         }
 
         th {
@@ -86,7 +88,7 @@
         }
 
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f2f2f2;
         }
 
         tr:hover {
@@ -130,25 +132,78 @@
     <table>
         <thead>
             <tr>
-                <th>Description</th>
+                <th>ID</th>
+                <th>Colis</th>
                 <th>Poids (kg)</th>
+                <th>Entrepôt</th>
+                <th>Destination</th>
+                <th>Statut</th>
+                <th>Livreur</th>
+                <th>Salaire</th>
+                <th>Véhicule</th>
+                <th>Carburant</th>
+                <th>Date</th>
             </tr>
         </thead>
+
         <tbody>
-            <?php if (!empty($colis)) : ?>
-                <?php foreach ($colis as $c) : ?>
+            <?php if (!empty($livraisons)) : ?>
+                <?php foreach ($livraisons as $l) : ?>
                     <tr>
-                        <td><?= htmlspecialchars($c['description']) ?></td>
-                        <td><?= htmlspecialchars($c['poids']) ?></td>
+                        <td><?= htmlspecialchars($l['id_livraison']) ?></td>
+                        <td><?= htmlspecialchars($l['colis_description']) ?></td>
+                        <td><?= htmlspecialchars($l['colis_poids']) ?></td>
+                        <td><?= htmlspecialchars($l['entrepot_adresse']) ?></td>
+                        <td><?= htmlspecialchars($l['destination']) ?></td>
+                        <td><?= htmlspecialchars($l['status']) ?></td>
+                        <td><?= htmlspecialchars($l['livreur_nom']) ?></td>
+                        <td><?= htmlspecialchars($l['livreur_salaire']) ?> Ar</td>
+                        <td><?= htmlspecialchars($l['vehicule_immatriculation']) ?></td>
+                        <td><?= htmlspecialchars($l['carburant']) ?></td>
+                        <td><?= htmlspecialchars($l['date_livraison']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>
                 <tr>
-                    <td colspan="2">Aucun colis trouvé</td>
+                    <td colspan="11">Aucune livraison trouvée</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Colis</th>
+            <th>Poids (kg)</th>
+            <th>Destination</th>
+            <th>Carburant</th>
+            <th>Chauffeur</th>
+            <th>Salaire</th>
+            <th>Revenu colis</th>
+            <th>Coût livraison</th>
+            <th>Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($livraisonsR as $l): ?>
+        <tr>
+            <td><?= $l['id_livraison'] ?></td>
+            <td><?= htmlspecialchars($l['colis_description']) ?></td>
+            <td><?= $l['colis_poids'] ?></td>
+            <td><?= htmlspecialchars($l['destination']) ?></td>
+            <td><?= $l['carburant'] ?> Ar</td>
+            <td><?= htmlspecialchars($l['livreur_nom']) ?></td>
+            <td><?= $l['salaire_livreur'] ?> Ar</td>
+            <td><?= $l['revenu_colis'] ?> Ar</td>
+            <td><?= $l['cout_livraison'] ?> Ar</td>
+            <td><?= $l['profit'] ?> Ar</td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
 </main>
 
 <footer>
