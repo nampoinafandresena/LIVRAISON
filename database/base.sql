@@ -21,8 +21,7 @@ CREATE TABLE livreur (
 CREATE TABLE colis (
     id_colis INT AUTO_INCREMENT PRIMARY KEY,
     description VARCHAR(100),
-    poids DECIMAL(10,2) NOT NULL,
-    prix DECIMAL(10,2) NOT NULL
+    poids DECIMAL(10,2) NOT NULL
 );
 
 CREATE TABLE status (
@@ -74,11 +73,11 @@ INSERT INTO vehicule (immatriculation) VALUES
 
 /* Colis */
 INSERT INTO colis (description, poids, prix) VALUES
-('Ordinateur portable', 10, 2000),
-('Téléphone mobile', 5, 2500),
-('Meuble', 20, 1800),
-('Télévision', 12, 2200),
-('Réfrigérateur', 30, 1500);
+('Ordinateur portable', 10),
+('Téléphone mobile', 5),
+('Meuble', 20),
+('Télévision', 12),
+('Réfrigérateur', 30);
 
 /* Livraisons (dates sur plusieurs mois) */
 INSERT INTO livraison VALUES
