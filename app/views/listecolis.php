@@ -10,8 +10,13 @@
         <tr>
             <td>Description</td>
             <td>Poids</td>
-            <td></td>
         </tr>
+        <?php foreach($colis as $c) { ?>
+            <tr>
+                <td><?=$c['description']?></td>
+                <td><?=$c['poids']?></td>
+            </tr>
+            <?php } ?>
     </table>
 </body>
 </html>
