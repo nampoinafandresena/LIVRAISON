@@ -24,7 +24,6 @@ CREATE TABLE livreur (
 
 CREATE TABLE chiffredaffaire (
     prixkg FLOAT NOT NULL,
- 
 );
 
 CREATE TABLE livraison (
