@@ -72,7 +72,7 @@ INSERT INTO vehicule (immatriculation) VALUES
 ('LMN-789');
 
 /* Colis */
-INSERT INTO colis (description, poids, prix) VALUES
+INSERT INTO colis (description, poids) VALUES
 ('Ordinateur portable', 10),
 ('Téléphone mobile', 5),
 ('Meuble', 20),
