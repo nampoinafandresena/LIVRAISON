@@ -88,3 +88,23 @@ INSERT INTO livraison VALUES
 (NULL, 5, 1, 'Ivandry, Antananarivo', 2, 2, 1, 9000, '2025-03-03'),
 (NULL, 1, 1, 'Ambohimanarina, Antananarivo', 1, 3, 3, 3000, '2025-03-15'),
 (NULL, 2, 1, 'Ankorondrano, Antananarivo', 3, 1, 2, 2000, '2025-04-01');
+
+-- Vues
+
+CREATE OR REPLACE VIEW v_liste_livraison as 
+SELECT l.id_livraison, l.destination , ch.nom as chauffeur , v.immatriculation as vehicule , co.description as colis ,e.adresse as entrepot , s.libelle as status
+from livraison l 
+join colis co on l.id_colis = co.id_colis 
+join livreur ch on l.id_livreur = ch.id_livreur 
+join vehicule v on l.id_vehicule = v.id_vehicule 
+join status s on s.id_status = l.id_status 
+join entrepot e on l.id_entrepot = e.id_entrepot ;
+
+CREATE OR REPLACE VIEW v_status_livraison as 
+SELECT l.id_livraison, l.destination , ch.nom as chauffeur , v.immatriculation as vehicule , co.description as colis ,e.adresse as entrepot , s.id_status as status
+from livraison l 
+join colis co on l.id_colis = co.id_colis 
+join livreur ch on l.id_livreur = ch.id_livreur 
+join vehicule v on l.id_vehicule = v.id_vehicule 
+join status s on s.id_status = l.id_status 
+join entrepot e on l.id_entrepot = e.id_entrepot ;
