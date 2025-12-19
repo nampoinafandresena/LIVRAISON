@@ -1,19 +1,19 @@
--- DELIMITER $$
+DELIMITER $$
 
--- CREATE FUNCTION getprix(idcolis INT)
--- RETURNS FLOAT
--- DETERMINISTIC
--- BEGIN
---     DECLARE PRIX FLOAT;
---     SELECT (ca.prixkg * c.poids) INTO PRIX from
---     colis c
---     JOIN chiffredaffaire ca 
---     WHERE c.id_colis = id_colis
---     LIMIT 1;
---     RETURN PRIX;
--- END $$
+CREATE FUNCTION getprix(idcolis INT)
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+    DECLARE PRIX FLOAT;
+    SELECT (ca.prixkg * c.poids) INTO PRIX from
+    colis c
+    JOIN chiffredaffaire ca 
+    WHERE c.id_colis = id_colis
+    LIMIT 1;
+    RETURN PRIX;
+END $$
 
--- DELIMITER ;
+DELIMITER ;
 DELIMITER $$
 
 CREATE FUNCTION getchiffredaffaire()
