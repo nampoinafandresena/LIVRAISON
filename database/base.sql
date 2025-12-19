@@ -117,6 +117,5 @@ join vehicule v on l.id_vehicule = v.id_vehicule
 join status s on s.id_status = l.id_status 
 join entrepot e on l.id_entrepot = e.id_entrepot ;
 
-CREATE OR REPLACE VIEW 
 
 
