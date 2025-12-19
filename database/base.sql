@@ -47,6 +47,10 @@ CREATE TABLE livraison (
     FOREIGN KEY (id_vehicule) REFERENCES vehicule(id_vehicule)
 );
 
+CREATE TABLE chiffredaffaire (
+    prixkg FLOAT NOT NULL
+);
+
 /* INSERTIONS DE DONNEES */
 
 /* Status */
@@ -79,6 +83,10 @@ INSERT INTO colis (description, poids) VALUES
 ('Télévision', 12),
 ('Réfrigérateur', 30);
 
+
+-- chiffredaffaire
+    INSERT INTO chiffredaffaire (prixkg) VALUES (4000);
+
 /* Livraisons (dates sur plusieurs mois) */
 INSERT INTO livraison VALUES
 (NULL, 1, 1, 'Lot II A 25, Antananarivo', 2, 1, 1, 5000, '2025-01-10'),
@@ -108,3 +116,7 @@ join livreur ch on l.id_livreur = ch.id_livreur
 join vehicule v on l.id_vehicule = v.id_vehicule 
 join status s on s.id_status = l.id_status 
 join entrepot e on l.id_entrepot = e.id_entrepot ;
+
+CREATE OR REPLACE VIEW 
+
+

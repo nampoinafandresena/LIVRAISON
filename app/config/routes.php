@@ -15,6 +15,8 @@ use flight\net\Router;
 
 // This wraps all routes in the group with the SecurityHeadersMiddleware
 $router->group('', function(Router $router) use ($app) {
+	$router->get('/',[LivraisonController::class,'alllivraison']);
+	
 		// makany am liste colis
 	$router->get('/colis/liste',[ColisController::class,'allcolis']);
 
